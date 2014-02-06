@@ -71,7 +71,7 @@ Try running that (code in reject.js)...
 It's complicated. Try them out for a bit and then take a look at the source for
 the Promise module and at the [Promise/A+ specification](https://github.com/promises-aplus/promises-spec).
 
-## Why it the difference from callbacks?
+## Why not just use a callback?
 So another way to implement this would be (code from no-promise.js):
 
     var theyPressedEnter = function(input) {
