@@ -1,0 +1,15 @@
+{
+    "name": "node-promise-example",
+    "description": "basic example of using promises with node to get input",
+    "version": "0.0.1",
+    "dependencies": {
+        "promise": "latest"
+    },
+    "engines": {
+        "node": ">=0.8"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cymen/node-promise-example"
+    }
+}
