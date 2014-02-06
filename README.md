@@ -70,3 +70,40 @@ Try running that (code in reject.js)...
 ## How does it really work?
 It's complicated. Try them out for a bit and then take a look at the source for
 the Promise module and at the [Promise/A+ specification](https://github.com/promises-aplus/promises-spec).
+
+## Why it the difference from callbacks?
+So another way to implement this would be (code from no-promise.js):
+
+    var theyPressedEnter = function(input) {
+      return input.indexOf('\n') != -1;
+    };
+
+    var getInput = function(callback) {
+      var input = '';
+
+      process.stdin.resume();
+      process.stdin.setEncoding('utf8');
+
+      process.stdin.on('data', function(chunk) {
+        input += chunk;
+
+        if (theyPressedEnter(chunk)) {
+          input = input.replace('\n', '');
+          process.stdin.pause();
+          callback(input);
+        }
+      });
+    };
+
+    process.stdout.write("Enter some text and press enter: ");
+
+    getInput(function(theInput) {
+      console.log("You entered: " + theInput);
+    });
+
+The difference here is our code is tied to knowing it has a single callback. It
+is just a little messier. However, in the end, it accomplishes the exact same
+thing. It is important to note that promsises are not a magic bullet. They are
+just a way to have better separation between your code and potentially handle
+more complicated scenarious (multiple promises) with a syntax that is easier to
+read and understand. Sometimes, a simple callback is going to make more sense.
